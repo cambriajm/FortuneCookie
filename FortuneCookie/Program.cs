@@ -13,7 +13,7 @@
             Random rand = new Random(); // constructor
 
             //test randomness and range with a for loop
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 1;)
             {
                 //rand.Next(min, max) max is not inclusive 
                 int n = rand.Next(1, 11); //random number between one and six
@@ -59,7 +59,19 @@
                         Console.WriteLine("yedehaw");
                         break;
                 }
+                    Console.WriteLine("Would you like a new fortune?");
+                    string userInput = "";
+                    Console.ReadLine();
+                   
+                    if(userInput == "Yes" || userInput == "yes")
+                    {
 
+                    }
+                    if (userInput == "No" || userInput == "no")
+                    {
+                        Console.WriteLine("Have a good day :)");
+                    }
+                    
                 }
             }
             //pause

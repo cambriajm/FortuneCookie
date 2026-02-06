@@ -18,8 +18,7 @@
                 //rand.Next(min, max) max is not inclusive 
                 int n = rand.Next(1, 11); //random number between one and six
 
-                while(true)
-                {
+                
 
                 switch (n)
                 {
@@ -28,7 +27,7 @@
                         break; 
 
                     case 1:
-                        Console.WriteLine("yeehaw");
+                        Console.WriteLine("You WILL find that missing sock that the washer ate.");
                         break;
 
                     case 2:
@@ -73,10 +72,9 @@
                     }
                     
                 }
-            }
             //pause
             Console.Read();
+            }
         }
 
     }
-}

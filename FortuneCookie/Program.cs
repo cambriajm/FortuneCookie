@@ -16,7 +16,7 @@
             for (int i = 0; i < 1;)
             {
                 //rand.Next(min, max) max is not inclusive 
-                int n = rand.Next(1, 11); //random number between one and six
+                int n = rand.Next(1, 11); //random number 
 
                 
 
@@ -31,49 +31,38 @@
                         break;
 
                     case 2:
-                        Console.WriteLine("no");
+                        Console.WriteLine("Your cat doesn't hate you, you're just insecure.");
                         break;
 
                     case 3:
-                        Console.WriteLine("AAAAA");
+                        Console.WriteLine("You will not be late to work.");
                         break;
 
                     case 4:
-                        Console.WriteLine("b");
+                        Console.WriteLine("This is a fortune cookie fortune. Yay!");
                         break;
 
                     case 5:
-                        Console.WriteLine("bb");
+                        Console.WriteLine("Beware the beast (your cat is hungry).");
                         break;
 
                     case 6:
-                        Console.WriteLine("c");
+                        Console.WriteLine("You will go to bed early tonight.");
                         break;
 
                     case 7:
-                        Console.WriteLine("d");
+                        Console.WriteLine("Pretend this is like, some motivational fortune.");
                         break;
 
                     case 8:
-                        Console.WriteLine("yedehaw");
+                        Console.WriteLine("For a better fortune, eat another cookie.");
                         break;
                 }
-                    Console.WriteLine("Would you like a new fortune?");
-                    string userInput = "";
-                    Console.ReadLine();
                    
-                    if(userInput == "Yes" || userInput == "yes")
-                    {
-
-                    }
-                    if (userInput == "No" || userInput == "no")
-                    {
-                        Console.WriteLine("Have a good day :)");
-                    }
-                    
-                }
             //pause
             Console.Read();
+                    
+                }
             }
         }
 

@@ -1,4 +1,9 @@
 ﻿namespace FortuneCookie
+//Cambria Morgan
+//Spring 2026
+//RCET 2265
+//MultiplicationTable
+//https://github.com/cambriajm/FortuneCookie.git
 {
     internal class Program
     {

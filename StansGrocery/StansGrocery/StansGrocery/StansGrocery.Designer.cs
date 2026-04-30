@@ -48,7 +48,7 @@
             TopMenuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
             TopMenuStrip.Location = new Point(0, 0);
             TopMenuStrip.Name = "TopMenuStrip";
-            TopMenuStrip.Size = new Size(832, 28);
+            TopMenuStrip.Size = new Size(868, 28);
             TopMenuStrip.TabIndex = 0;
             TopMenuStrip.Text = "menuStrip1";
             // 
@@ -107,7 +107,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(832, 512);
+            ClientSize = new Size(868, 571);
             Controls.Add(TopMenuStrip);
             MainMenuStrip = TopMenuStrip;
             Name = "StansGrocery";

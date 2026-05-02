@@ -38,6 +38,12 @@
             ContextMenuStrip = new ContextMenuStrip(components);
             searchToolStripMenuItem1 = new ToolStripMenuItem();
             exitToolStripMenuItem1 = new ToolStripMenuItem();
+            ItemNameTextBox = new TextBox();
+            ItemComboBox = new ComboBox();
+            DisplayListBox = new ListBox();
+            AisleRadioButton = new RadioButton();
+            FilterRadioButton = new RadioButton();
+            SearchButton = new Button();
             TopMenuStrip.SuspendLayout();
             ContextMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -103,11 +109,71 @@
             exitToolStripMenuItem1.Size = new Size(122, 24);
             exitToolStripMenuItem1.Text = "Exit";
             // 
+            // ItemNameTextBox
+            // 
+            ItemNameTextBox.Location = new Point(102, 76);
+            ItemNameTextBox.Name = "ItemNameTextBox";
+            ItemNameTextBox.Size = new Size(125, 27);
+            ItemNameTextBox.TabIndex = 1;
+            // 
+            // ItemComboBox
+            // 
+            ItemComboBox.FormattingEnabled = true;
+            ItemComboBox.Location = new Point(268, 75);
+            ItemComboBox.Name = "ItemComboBox";
+            ItemComboBox.Size = new Size(151, 28);
+            ItemComboBox.TabIndex = 2;
+            // 
+            // DisplayListBox
+            // 
+            DisplayListBox.FormattingEnabled = true;
+            DisplayListBox.Location = new Point(100, 134);
+            DisplayListBox.Name = "DisplayListBox";
+            DisplayListBox.Size = new Size(551, 224);
+            DisplayListBox.TabIndex = 3;
+            // 
+            // AisleRadioButton
+            // 
+            AisleRadioButton.AutoSize = true;
+            AisleRadioButton.Location = new Point(179, 415);
+            AisleRadioButton.Name = "AisleRadioButton";
+            AisleRadioButton.Size = new Size(62, 24);
+            AisleRadioButton.TabIndex = 4;
+            AisleRadioButton.TabStop = true;
+            AisleRadioButton.Text = "Aisle";
+            AisleRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // FilterRadioButton
+            // 
+            FilterRadioButton.AutoSize = true;
+            FilterRadioButton.Location = new Point(284, 398);
+            FilterRadioButton.Name = "FilterRadioButton";
+            FilterRadioButton.Size = new Size(90, 24);
+            FilterRadioButton.TabIndex = 5;
+            FilterRadioButton.TabStop = true;
+            FilterRadioButton.Text = "Category";
+            FilterRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // SearchButton
+            // 
+            SearchButton.Location = new Point(502, 391);
+            SearchButton.Name = "SearchButton";
+            SearchButton.Size = new Size(145, 46);
+            SearchButton.TabIndex = 6;
+            SearchButton.Text = "Search";
+            SearchButton.UseVisualStyleBackColor = true;
+            // 
             // StansGrocery
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(868, 571);
+            ClientSize = new Size(868, 469);
+            Controls.Add(SearchButton);
+            Controls.Add(FilterRadioButton);
+            Controls.Add(AisleRadioButton);
+            Controls.Add(DisplayListBox);
+            Controls.Add(ItemComboBox);
+            Controls.Add(ItemNameTextBox);
             Controls.Add(TopMenuStrip);
             MainMenuStrip = TopMenuStrip;
             Name = "StansGrocery";
@@ -130,5 +196,11 @@
         private ContextMenuStrip ContextMenuStrip;
         private ToolStripMenuItem searchToolStripMenuItem1;
         private ToolStripMenuItem exitToolStripMenuItem1;
+        private TextBox ItemNameTextBox;
+        private ComboBox ItemComboBox;
+        private ListBox DisplayListBox;
+        private RadioButton AisleRadioButton;
+        private RadioButton FilterRadioButton;
+        private Button SearchButton;
     }
 }

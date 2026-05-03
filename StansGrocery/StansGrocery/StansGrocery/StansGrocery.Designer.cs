@@ -44,6 +44,8 @@
             AisleRadioButton = new RadioButton();
             FilterRadioButton = new RadioButton();
             SearchButton = new Button();
+            SelectedItem = new ListBox();
+            toolTip1 = new ToolTip(components);
             TopMenuStrip.SuspendLayout();
             ContextMenuStrip.SuspendLayout();
             SuspendLayout();
@@ -64,19 +66,22 @@
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.ToolTipText = "File options";
             // 
             // searchToolStripMenuItem
             // 
             searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            searchToolStripMenuItem.Size = new Size(136, 26);
+            searchToolStripMenuItem.Size = new Size(224, 26);
             searchToolStripMenuItem.Text = "Search";
+            searchToolStripMenuItem.ToolTipText = "Click to search";
             searchToolStripMenuItem.Click += searchToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(136, 26);
+            exitToolStripMenuItem.Size = new Size(224, 26);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.ToolTipText = "Exit application";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
@@ -85,12 +90,14 @@
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             helpToolStripMenuItem.Size = new Size(55, 24);
             helpToolStripMenuItem.Text = "Help";
+            helpToolStripMenuItem.ToolTipText = "HELP MEEEEE";
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(224, 26);
             aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.ToolTipText = "Info about program";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // ContextMenuStrip
@@ -118,6 +125,8 @@
             ItemNameTextBox.Name = "ItemNameTextBox";
             ItemNameTextBox.Size = new Size(125, 27);
             ItemNameTextBox.TabIndex = 1;
+            ItemNameTextBox.Text = "Start typing the item you wish to find";
+            ItemNameTextBox.TextChanged += ItemNameTextBox_TextChanged;
             // 
             // ItemComboBox
             // 
@@ -126,6 +135,8 @@
             ItemComboBox.Name = "ItemComboBox";
             ItemComboBox.Size = new Size(151, 28);
             ItemComboBox.TabIndex = 2;
+            ItemComboBox.Text = "~All Items~";
+            toolTip1.SetToolTip(ItemComboBox, "Select where your item is by category or aisle");
             ItemComboBox.SelectedIndexChanged += ItemComboBox_SelectedIndexChanged;
             // 
             // DisplayListBox
@@ -136,16 +147,19 @@
             DisplayListBox.Name = "DisplayListBox";
             DisplayListBox.Size = new Size(551, 224);
             DisplayListBox.TabIndex = 3;
+            toolTip1.SetToolTip(DisplayListBox, "Products are displayed here ");
+            DisplayListBox.SelectedIndexChanged += DisplayListBox_SelectedIndexChanged;
             // 
             // AisleRadioButton
             // 
             AisleRadioButton.AutoSize = true;
-            AisleRadioButton.Location = new Point(179, 415);
+            AisleRadioButton.Location = new Point(179, 398);
             AisleRadioButton.Name = "AisleRadioButton";
             AisleRadioButton.Size = new Size(62, 24);
             AisleRadioButton.TabIndex = 4;
             AisleRadioButton.TabStop = true;
             AisleRadioButton.Text = "Aisle";
+            toolTip1.SetToolTip(AisleRadioButton, "Sort by aisle");
             AisleRadioButton.UseVisualStyleBackColor = true;
             AisleRadioButton.CheckedChanged += AisleRadioButton_CheckedChanged;
             // 
@@ -158,6 +172,7 @@
             FilterRadioButton.TabIndex = 5;
             FilterRadioButton.TabStop = true;
             FilterRadioButton.Text = "Category";
+            toolTip1.SetToolTip(FilterRadioButton, "Sort by category");
             FilterRadioButton.UseVisualStyleBackColor = true;
             FilterRadioButton.CheckedChanged += FilterRadioButton_CheckedChanged;
             // 
@@ -168,13 +183,29 @@
             SearchButton.Size = new Size(145, 46);
             SearchButton.TabIndex = 6;
             SearchButton.Text = "Search";
+            toolTip1.SetToolTip(SearchButton, "SEARCH BUTTONNNNNNNNNNNNNN");
             SearchButton.UseVisualStyleBackColor = true;
+            // 
+            // SelectedItem
+            // 
+            SelectedItem.Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SelectedItem.FormattingEnabled = true;
+            SelectedItem.Location = new Point(657, 134);
+            SelectedItem.Name = "SelectedItem";
+            SelectedItem.Size = new Size(199, 84);
+            SelectedItem.TabIndex = 7;
+            toolTip1.SetToolTip(SelectedItem, "This is where your selected item sits");
+            // 
+            // toolTip1
+            // 
+             
             // 
             // StansGrocery
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(868, 469);
+            Controls.Add(SelectedItem);
             Controls.Add(SearchButton);
             Controls.Add(FilterRadioButton);
             Controls.Add(AisleRadioButton);
@@ -186,6 +217,7 @@
             Name = "StansGrocery";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stans Grocery";
+            Load += StansGrocery_Load;
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();
             ContextMenuStrip.ResumeLayout(false);
@@ -210,5 +242,7 @@
         private RadioButton AisleRadioButton;
         private RadioButton FilterRadioButton;
         private Button SearchButton;
+        private ListBox SelectedItem;
+        private ToolTip toolTip1;
     }
 }

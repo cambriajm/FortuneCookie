@@ -1,9 +1,9 @@
 namespace StansGrocery
-    //Cambria Morgan
-    //Spring 2026
-    //RCET 2265
-    //Stans Grocery
-    //
+//Cambria Morgan
+//Spring 2026
+//RCET 2265
+//Stans Grocery
+//https://github.com/cambriajm/StansGrocery.git
 
 {
     public partial class StansGrocery : Form
@@ -15,7 +15,7 @@ namespace StansGrocery
             SetDefaults();
             string filePath = @"C:\Users\cambr\OneDrive\Desktop\VisualStudioWork\StansGrocery\Grocery.txt";
             FileToArray(filePath);
-
+            LoadFilterComboBox();
             searchToolStripMenuItem.Click += SearchButton_Click;
             searchToolStripMenuItem1.Click += SearchButton_Click;
             exitToolStripMenuItem1.Click += exitToolStripMenuItem_Click;
@@ -36,7 +36,7 @@ namespace StansGrocery
         }
 
 
-        int CountOfLinesIn(string filePath)
+        int CountOfLinesIn(string filePath)//allows file to be read
         {
             int count = 0;
             using (StreamReader testFile = new StreamReader(filePath))
@@ -49,7 +49,7 @@ namespace StansGrocery
             }
             return count;
         }
-        string Clean(string input)
+        string Clean(string input)//cleans the text file text to organize it 
         {
             return input
                 .Replace("\"", "")
@@ -61,7 +61,7 @@ namespace StansGrocery
                 .Replace("CAT", "")
                 .Trim();
         }
-        void FileToArray(string filePath)
+        void FileToArray(string filePath)//puts the text into array
         {
             string[,] _customerData = new string[3, CountOfLinesIn(filePath)];
             string[] temp;
@@ -85,7 +85,7 @@ namespace StansGrocery
             this.customerData = _customerData;
         }
 
-        void DisplayData()
+        void DisplayData()//data display options based on the button selection
         {
             string[,] data = this.customerData;
             string formattedRow = "";
@@ -108,7 +108,10 @@ namespace StansGrocery
             {
                 for (int column = 0; column < data.GetLength(0); column++)
                 {
-                    if (data[column, row] != null && (data[filterColumn, row] == ItemComboBox.SelectedItem.ToString() || ItemComboBox.SelectedIndex == 0))
+                    if (data[column, row] != null && (ItemComboBox.SelectedItem.ToString() ==
+                        "~Show All~" || data[filterColumn, row]
+                        == ItemComboBox.SelectedItem.ToString()))
+
                     {
                         formattedRow = $"{data[0, row],-25}{data[1, row],-5}{data[2, row],-25}";
                     }
@@ -119,24 +122,27 @@ namespace StansGrocery
                     {
                         DisplayListBox.Items.Add(formattedRow);
                     }
+                    else
+                    {
 
+                    }
                 }
 
             }
         }
 
-        void LoadFilterComboBox()
+        void LoadFilterComboBox()//options box loads based on the button selected
         {
             int column = 1;
             ItemComboBox.Items.Clear();
 
             switch (true)
             {
-                case bool when FilterRadioButton.Checked:
-                    column = 2;
-                    break;
                 case bool when AisleRadioButton.Checked:
                     column = 1;
+                    break;
+                case bool when FilterRadioButton.Checked:
+                    column = 2;
                     break;
 
                     //default:
@@ -150,33 +156,46 @@ namespace StansGrocery
                     ItemComboBox.Items.Add(this.customerData[column, row]); //add data
                 }
             }
-            ItemComboBox.Items.Add("~All Items~");
-            ItemComboBox.Sorted = true;
-            ItemComboBox.SelectedItem = 0;
+
+            List<string> items;
+            if (AisleRadioButton.Checked)
+                items = ItemComboBox.Items.Cast<string>().OrderByDescending
+                    (x => int.TryParse(x, out int n) ? n : int.MaxValue).ToList();
+            else
+                items = ItemComboBox.Items.Cast<string>().OrderBy(x => x).ToList();
+
+            ItemComboBox.Items.Clear();
+            ItemComboBox.Items.Add("~Show All~");
+            foreach (var item in items)
+                ItemComboBox.Items.Add(item);
+
+            ItemComboBox.SelectedIndex = 0;
 
         }
-
-        private void SearchButton_Click(object sender, EventArgs e)
+        private void SetDefaults()//defaults
         {
-             
+            AisleRadioButton.Checked = true;
+            LoadFilterComboBox();
+            SelectedItem.Text = "";
+        }
+        private void SearchButton_Click(object sender, EventArgs e)//button filters results
+        {
+            ItemComboBox.SelectedIndex = 0;
             DisplayData();
- 
+            if (ItemNameTextBox.Text.Equals("zzz", StringComparison.InvariantCultureIgnoreCase))
+                this.Close();
+            if (DisplayListBox.Items.Count == 0)
+                DisplayListBox.Text = $"Sorry no matches for {ItemNameTextBox.Text}";
+            ItemNameTextBox.Text = "";
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)//exit
         {
             this.Close();
         }
-        private void SetDefaults()
+        private void ItemComboBox_SelectedIndexChanged(object? sender, EventArgs e)//dispkay
         {
-            AisleRadioButton.Checked = true;
-        }
 
-
-
-        private void ItemComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
             DisplayData();
 
         }
@@ -195,17 +214,54 @@ namespace StansGrocery
 
         private void searchToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SearchButton_Click(sender, e);
-            DisplayData();
+            {
+                SearchButton_Click(sender, e);
+                DisplayData();
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             {
-               
+
                 AboutForm aboutForm = new AboutForm(); // the about form
                 aboutForm.Show();
             }
+        }
+
+        private void ItemNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DisplayListBox_SelectedIndexChanged(object sender, EventArgs e)//wher to find selected item
+        {
+            {
+                if (DisplayListBox.SelectedItem == null)
+                {
+                    SelectedItem.Text = "";
+                    return;
+                }
+
+                string selectedItem = DisplayListBox.SelectedItem.ToString().Substring(0, 25).Trim();
+
+                for (int row = 0; row < customerData.GetLength(1); row++)
+                {
+                    if (customerData[0, row] != null && customerData[0, row].Equals
+                        (selectedItem, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        SelectedItem.Text = $"You will find {customerData[0, row]}" + "\n" +
+                            $"on aisle {customerData[1, row]}" + "\n" +
+                            $"with the {customerData[2, row]}";
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void StansGrocery_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

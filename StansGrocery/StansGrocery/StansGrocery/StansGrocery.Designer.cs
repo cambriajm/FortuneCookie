@@ -70,6 +70,7 @@
             searchToolStripMenuItem.Name = "searchToolStripMenuItem";
             searchToolStripMenuItem.Size = new Size(136, 26);
             searchToolStripMenuItem.Text = "Search";
+            searchToolStripMenuItem.Click += searchToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
@@ -88,8 +89,9 @@
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(133, 26);
+            aboutToolStripMenuItem.Size = new Size(224, 26);
             aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // ContextMenuStrip
             // 
@@ -182,6 +184,7 @@
             Controls.Add(TopMenuStrip);
             MainMenuStrip = TopMenuStrip;
             Name = "StansGrocery";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Stans Grocery";
             TopMenuStrip.ResumeLayout(false);
             TopMenuStrip.PerformLayout();

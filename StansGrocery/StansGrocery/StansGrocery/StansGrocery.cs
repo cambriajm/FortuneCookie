@@ -15,12 +15,12 @@ namespace StansGrocery
             SetDefaults();
             string filePath = @"C:\Users\cambr\OneDrive\Desktop\VisualStudioWork\StansGrocery\Grocery.txt";
             FileToArray(filePath);
-            
+
             searchToolStripMenuItem.Click += SearchButton_Click;
             searchToolStripMenuItem1.Click += SearchButton_Click;
             exitToolStripMenuItem1.Click += exitToolStripMenuItem_Click;
             SearchButton.Enabled = true;
-            
+
 
         }
         string[,] customerData = new string[0, 0];
@@ -110,15 +110,15 @@ namespace StansGrocery
                 {
                     if (data[column, row] != null && (data[filterColumn, row] == ItemComboBox.SelectedItem.ToString() || ItemComboBox.SelectedIndex == 0))
                     {
-                        formattedRow = $"{data[0, row],-25}{data[1, row],-5}{data[2, row],-23}";
+                        formattedRow = $"{data[0, row],-25}{data[1, row],-5}{data[2, row],-25}";
                     }
                 }
-                if (formattedRow !="")
+                if (formattedRow != "")
                 {
-                if (formattedRow.Contains(ItemNameTextBox.Text, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    DisplayListBox.Items.Add(formattedRow);
-                }
+                    if (formattedRow.Contains(ItemNameTextBox.Text, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        DisplayListBox.Items.Add(formattedRow);
+                    }
 
                 }
 
@@ -147,7 +147,7 @@ namespace StansGrocery
                 if (this.customerData[column, row] != null && ItemComboBox.Items.Contains(this.customerData[column, row]) != true)
                 {
 
-                    ItemComboBox.Items.Add(this.customerData[column, row]); //add city 
+                    ItemComboBox.Items.Add(this.customerData[column, row]); //add data
                 }
             }
             ItemComboBox.Items.Add("~All Items~");
@@ -158,9 +158,9 @@ namespace StansGrocery
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            ItemComboBox.SelectedIndex = 0;
+             
             DisplayData();
-            ItemNameTextBox.Text = "";
+ 
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -176,18 +176,36 @@ namespace StansGrocery
 
         private void ItemComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             DisplayData();
 
         }
 
         private void AisleRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            ItemNameTextBox.Text = "";
             LoadFilterComboBox();
         }
 
         private void FilterRadioButton_CheckedChanged(object sender, EventArgs e)
         {
+            ItemNameTextBox.Text = "";
             LoadFilterComboBox();
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SearchButton_Click(sender, e);
+            DisplayData();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            {
+               
+                AboutForm aboutForm = new AboutForm(); // the about form
+                aboutForm.Show();
+            }
         }
     }
 }

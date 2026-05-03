@@ -76,6 +76,7 @@
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(136, 26);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -123,9 +124,11 @@
             ItemComboBox.Name = "ItemComboBox";
             ItemComboBox.Size = new Size(151, 28);
             ItemComboBox.TabIndex = 2;
+            ItemComboBox.SelectedIndexChanged += ItemComboBox_SelectedIndexChanged;
             // 
             // DisplayListBox
             // 
+            DisplayListBox.Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DisplayListBox.FormattingEnabled = true;
             DisplayListBox.Location = new Point(100, 134);
             DisplayListBox.Name = "DisplayListBox";
@@ -142,6 +145,7 @@
             AisleRadioButton.TabStop = true;
             AisleRadioButton.Text = "Aisle";
             AisleRadioButton.UseVisualStyleBackColor = true;
+            AisleRadioButton.CheckedChanged += AisleRadioButton_CheckedChanged;
             // 
             // FilterRadioButton
             // 
@@ -153,6 +157,7 @@
             FilterRadioButton.TabStop = true;
             FilterRadioButton.Text = "Category";
             FilterRadioButton.UseVisualStyleBackColor = true;
+            FilterRadioButton.CheckedChanged += FilterRadioButton_CheckedChanged;
             // 
             // SearchButton
             // 
